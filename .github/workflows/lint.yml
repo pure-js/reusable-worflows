@@ -1,0 +1,19 @@
+name: Code Linting
+
+on:
+  push:
+  workflow_call:
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      - name: Install modules
+        run: npm ci
+      - name: Run Lint checking
+        run: npm run lint
